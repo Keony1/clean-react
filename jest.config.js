@@ -6,7 +6,7 @@ module.exports = {
     '!<rootDir>/src/**/*-protocols.ts',
   ],
   coverageDirectory: 'coverage',
-  testEnviroment: 'node',
+  testEnvironment: 'node',
   transform: {
     '.+\\.ts$': 'ts-jest',
   },
