@@ -3,3 +3,4 @@ node_modules
 coverage
 eslint.js
 src/public
+*.scss
