@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import Context from '@/presentation/context/form/form-context';
 import Styles from './input-styles.scss';
 
@@ -9,22 +9,34 @@ type Props = React.DetailedHTMLProps<
 >;
 
 const Input: React.FC<Props> = (props: Props) => {
-  const { errorState } = useContext(Context);
-  const error = errorState[props.name];
+  const { state, setState } = useContext(Context);
+  const error = state[`${props.name}Error`];
 
-  const getStatus = (): string => {
+  const getStatus = useCallback((): string => {
     return '🔴';
-  }
+  }, []);
 
-  const getTitle = (): string => {
+  const getTitle = useCallback((): string => {
     return error;
-  }
+  }, []);
+
+  const handleOnChange = useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value,
+    })
+  }, []);
 
 
   return (
     <div className={Styles.inputWrap}>
-      <input {...props} />
-      <span data-testid={`${props.name}-status`} title={getTitle()} className={Styles.status}>{getStatus()}</span>
+      <input {...props} data-testid={props.name} onChange={handleOnChange} />
+      <span
+        data-testid={`${props.name}-status`}
+        title={getTitle()}
+        className={Styles.status}>
+        {getStatus()}
+      </span>
     </div>
   );
 };
