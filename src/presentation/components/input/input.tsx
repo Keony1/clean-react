@@ -18,7 +18,11 @@ const Input: React.FC<Props> = (props: Props) => {
 
   const getTitle = useCallback((): string => {
     return error;
-  }, []);
+  }, [error]);
+
+  // const getTitle = (): string => {
+  //   return error;
+  // }
 
   const handleOnChange = useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
     setState({
