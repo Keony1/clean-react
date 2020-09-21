@@ -20,17 +20,12 @@ const Input: React.FC<Props> = (props: Props) => {
     return error;
   }, [error]);
 
-  // const getTitle = (): string => {
-  //   return error;
-  // }
-
   const handleOnChange = useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
     setState({
       ...state,
       [event.target.name]: event.target.value,
     })
   }, []);
-
 
   return (
     <div className={Styles.inputWrap}>
