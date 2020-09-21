@@ -13,11 +13,11 @@ const Input: React.FC<Props> = (props: Props) => {
   const error = state[`${props.name}Error`];
 
   const getStatus = useCallback((): string => {
-    return '🔴';
-  }, []);
+    return error ? '🔴' : '🔵';
+  }, [error]);
 
   const getTitle = useCallback((): string => {
-    return error;
+    return error ? error : 'tudo certo';
   }, [error]);
 
   const handleOnChange = useCallback((event: React.ChangeEvent<HTMLInputElement>): void => {
